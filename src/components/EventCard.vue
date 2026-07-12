@@ -38,7 +38,7 @@ defineProps<{
   width: 250px;
   cursor: pointer;
   border: 1px solid #39495c;
-  margin-bottom: 18px;
+  margin-bottom: 4px;
 }
 
 .event-card:hover {
