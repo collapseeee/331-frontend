@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: 'https://my-json-server.typicode.com/collapseeee/331-Lab02-Server',
+  baseURL: 'https://my-json-server.typicode.com/collapseeee/331-Lab03-Server',
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -10,8 +10,8 @@ const apiClient = axios.create({
 })
 
 export default {
-  getEvents() {
-    return apiClient.get('/events')
+  getEvents(perPage: number, page: number) {
+    return apiClient.get('/events?_limit=' + perPage + '&_page=' + page)
   },
   getEvent(id : number) {
     return apiClient.get('/events/' + id);

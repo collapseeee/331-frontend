@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { provide, ref } from 'vue';
+const eventPerPage = ref<number>(2);
+provide('eventPerPage', eventPerPage)
 </script>
 
 <template>
@@ -7,9 +10,12 @@ import { RouterLink, RouterView } from 'vue-router'
     <header>
       <div class="wrapper">
         <nav>
-          <RouterLink :to="{ name: 'event-list-view'}">Event</RouterLink> |
+          <RouterLink :to="{ name: 'event-list-view', query: {page: 1, perPage: eventPerPage} }">Event</RouterLink> |
           <RouterLink :to="{ name: 'student-list-view'}">Students</RouterLink> |
-          <RouterLink :to="{ name: 'about'}">About</RouterLink>
+          <RouterLink :to="{ name: 'about'}">About</RouterLink> |
+          <RouterLink :to="{ name: 'setting-view', }">
+            Setting
+          </RouterLink>
         </nav>
       </div>
     </header>
