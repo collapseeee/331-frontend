@@ -45,8 +45,7 @@ onMounted(() => {
       <EventCard :event="event" />
       <EventAdditionalCard :event="event" />
     </div>
-  </div>
-  <div class="pagination">
+    <div class="pagination">
     <RouterLink
     id="page-prev"
     :to="{ name: 'event-list-view', query: { page: page - 1, perPage: perPage }}"
@@ -64,6 +63,7 @@ onMounted(() => {
     >
       Next Page &#62;
     </RouterLink>
+  </div>
   </div>
 
 </template>
