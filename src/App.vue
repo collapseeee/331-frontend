@@ -5,7 +5,7 @@ import { useMessageStore } from '@/stores/message';
 import { storeToRefs } from 'pinia';
 const store = useMessageStore();
 const { message } = storeToRefs(store);
-const eventPerPage = ref<number>(2);
+const eventPerPage = ref<number>(3);
 provide('eventPerPage', eventPerPage)
 </script>
 
