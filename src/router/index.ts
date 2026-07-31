@@ -13,6 +13,7 @@ import UserListView from '@/views/UserListView.vue'
 import UserLayoutView from '@/views/user/LayoutView.vue'
 import UserProfileView from '@/views/user/ProfileView.vue'
 import UserPostView from '@/views/user/PostView.vue'
+import UserEditView from '@/views/user/EditView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
 import { useEventStore } from '@/stores/event'
@@ -96,6 +97,11 @@ const router = createRouter({
           path: 'posts',
           name: 'user-post-view',
           component: UserPostView
+        },
+        {
+          path: 'edit',
+          name: 'user-edit-view',
+          component: UserEditView
         }
       ]
     },

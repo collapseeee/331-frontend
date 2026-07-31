@@ -59,8 +59,12 @@ onMounted(() => {
       |
       <router-link :to="{ name: 'user-post-view'}">
         Posts
-    </router-link>
-  </nav>
-  <RouterView :user="user" :posts="posts" />
-</div>
+      </router-link>
+      |
+      <router-link :to="{ name: 'user-edit-view'}">
+        Edit
+      </router-link>
+    </nav>
+    <RouterView :user="user" :posts="posts" />
+  </div>
 </template>
