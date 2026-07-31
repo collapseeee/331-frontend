@@ -9,6 +9,10 @@ import SettingView from '@/views/SettingView.vue'
 import EventLayoutView from '@/views/event/LayoutView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
+import UserListView from '@/views/UserListView.vue'
+import UserLayoutView from '@/views/user/LayoutView.vue'
+import UserProfileView from '@/views/user/ProfileView.vue'
+import UserPostView from '@/views/user/PostView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
 import { useEventStore } from '@/stores/event'
@@ -65,6 +69,33 @@ const router = createRouter({
           path: 'edit',
           name: 'event-edit-view',
           component: EventEditView
+        }
+      ]
+    },
+    {
+      path: '/user',
+      name: 'user-list-view',
+      component: UserListView,
+      props: (route) => ({
+        page: parseInt(route.query.page?.toString() || '1'),
+        perPage: parseInt(route.query.perPage?.toString() || '2')
+      })
+    },
+    {
+      path: '/user/:id',
+      name: 'user-layout-view',
+      component: UserLayoutView,
+      props: true,
+      children: [
+        {
+          path: '',
+          name: 'user-profile-view',
+          component: UserProfileView
+        },
+        {
+          path: 'posts',
+          name: 'user-post-view',
+          component: UserPostView
         }
       ]
     },
