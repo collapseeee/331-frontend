@@ -17,6 +17,8 @@ import UserEditView from '@/views/user/EditView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
 import { useEventStore } from '@/stores/event'
+import { useUserStore } from '@/stores/user'
+import UserService from '@/services/UserService'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -87,6 +89,30 @@ const router = createRouter({
       name: 'user-layout-view',
       component: UserLayoutView,
       props: true,
+      beforeEnter: (to) => {
+        const id = parseInt(to.params.id as string);
+        const userStore = useUserStore()
+        return Promise.all([
+          UserService.getUser(id),
+          UserService.getPosts(id)
+        ])
+        .then(([userResponse, postsResponse]) => {
+          userStore.setUser(userResponse.data)
+          userStore.setPosts(postsResponse.data)
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 404) {
+            return {
+              name: '404-resource-view',
+              params: { resource: 'user' }
+            }
+          } else {
+            return {
+              name: 'network-error-view'
+            }
+          }
+        })
+      },
       children: [
         {
           path: '',

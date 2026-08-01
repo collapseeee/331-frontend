@@ -60,3 +60,8 @@ export interface MessageState {
 export interface EventState {
   event: Event | null
 }
+
+export interface UserState {
+  user: User | null
+  posts: Post[] | null
+}
