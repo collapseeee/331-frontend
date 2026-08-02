@@ -12,7 +12,7 @@ provide('eventPerPage', eventPerPage)
 <template>
   <div class="text-center font-sans text-gray-700 antialiased">
     <header>
-      <div id="flashMessage" v-if="message && message.split(' ').at(0) !== 'The'">
+      <div id="flashMessage" class="animate-fade" v-if="message && message.split(' ').at(0) !== 'The'">
         <h4>{{ message }}</h4>
       </div>
       <div class="wrapper">
@@ -38,18 +38,5 @@ nav {
 
 h2 {
   font-size: 20px;
-}
-
-@keyframes yellowFade {
-  from {
-    background-color: yellow;
-  }
-  to {
-    background-color: transparent;
-  }
-}
-
-#flashMessage {
-  animation: yellowFade 3s ease-in-out;
 }
 </style>
