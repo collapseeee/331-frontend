@@ -15,6 +15,7 @@ provide('eventPerPage', eventPerPage)
       <div id="flashMessage" class="animate-fade" v-if="message && message.split(' ').at(0) !== 'The'">
         <h4>{{ message }}</h4>
       </div>
+      <h1>Deploy with Vercel</h1>
       <div class="wrapper">
         <nav>
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'event-list-view', query: {page: 1, perPage: eventPerPage} }">Event</RouterLink> |
