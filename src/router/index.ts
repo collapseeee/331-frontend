@@ -15,6 +15,7 @@ import UserProfileView from '@/views/user/ProfileView.vue'
 import UserPostView from '@/views/user/PostView.vue'
 import UserEditView from '@/views/user/EditView.vue'
 import AddEventView from '@/views/event/EventFormView.vue'
+import AddOrganizerView from '@/views/OrganizerFormView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
 import { useEventStore } from '@/stores/event'
@@ -141,6 +142,11 @@ const router = createRouter({
       path: '/add-event',
       name: 'add-event',
       component: AddEventView,
+    },
+    {
+      path: '/add-organizer',
+      name: 'add-organizer',
+      component: AddOrganizerView,
     },
     {
       path: '/404/:resource',
