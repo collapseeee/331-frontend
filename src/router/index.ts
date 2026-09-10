@@ -14,6 +14,7 @@ import UserLayoutView from '@/views/user/LayoutView.vue'
 import UserProfileView from '@/views/user/ProfileView.vue'
 import UserPostView from '@/views/user/PostView.vue'
 import UserEditView from '@/views/user/EditView.vue'
+import AddEventView from '@/views/event/EventFormView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
 import { useEventStore } from '@/stores/event'
@@ -135,6 +136,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: AboutView,
+    },
+    {
+      path: '/add-event',
+      name: 'add-event',
+      component: AddEventView,
     },
     {
       path: '/404/:resource',
