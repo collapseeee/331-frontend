@@ -65,3 +65,9 @@ export interface UserState {
   user: User | null
   posts: Post[] | null
 }
+
+export interface Organizer {
+  id: number | null
+  organizationName: string;
+  address: string;
+}
