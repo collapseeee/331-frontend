@@ -15,6 +15,6 @@ const { event } = toRefs(props);
   <div id="flashMessage" class="animate-fade" v-if="message && message.split(' ').at(0) === 'The'">
       <h4>{{ message }}</h4>
   </div>
-  <p>{{ event.time }} on {{ event.date }} @ {{  event.location }}</p>
+  <p>{{ event.title }} @ {{  event.location }}</p>
   <p>{{ event.description }}</p>
 </template>
