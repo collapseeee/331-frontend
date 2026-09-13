@@ -11,6 +11,9 @@ const apiClient = axios.create({
 })
 
 export default {
+  getOrganizers() {
+    return apiClient.get('/organizers')
+  },
   saveOrganizer(organizer: Organizer) {
     return apiClient.post('/organizers', organizer);
   }
