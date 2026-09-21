@@ -70,3 +70,17 @@ export interface Organizer {
   id: number
   name: string;
 }
+
+export interface Auction {
+  id: number
+  description: string
+  type: string
+  bids: Bid[]
+  successfulBid: Bid | null
+}
+
+export interface Bid {
+  id: number
+  amount: number
+  datetime: string
+}
