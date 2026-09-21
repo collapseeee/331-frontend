@@ -4,6 +4,8 @@ import EventAdditionalCard from '@/components/EventAdditionalCard.vue'
 import type { Event } from '@/types'
 import { computed, onMounted, ref, watchEffect } from 'vue'
 import EventService from '@/services/EventService'
+import BaseInput from '@/components/BaseInput.vue'
+import router from '@/router'
 
 const events = ref<Event[] | null>(null)
 const totalEvents = ref<number>(0);
@@ -35,11 +37,37 @@ onMounted(() => {
       })
   })
 })
+
+const keyword = ref('');
+function updateKeyword() {
+  let queryFunction;
+  if (keyword.value === '') {
+    queryFunction = EventService.getEvents(3, page.value);
+  } else {
+    queryFunction = EventService.getEventsByKeyword(keyword.value, 3, page.value)
+  }
+  queryFunction.then((response) => {
+    events.value = response.data;
+    console.log('events', events.value);
+    totalEvents.value = response.headers['x-total-count'];
+    console.log('totalEvent', totalEvents.value);
+  }).catch(() => {
+    router.push({ name: 'network-error-view' })
+  })
+}
 </script>
 
 <template>
   <h1>Events For Good</h1>
   <div class="flex flex-col items-center">
+    <div class="w-64">
+      <BaseInput
+        v-model="keyword"
+        label="Search..."
+        class="w-full"
+        @input="updateKeyword"
+      />
+    </div>
     <div v-for="event in events" :key="event.id">
       <EventCard :event="event" />
       <EventAdditionalCard :event="event" />
