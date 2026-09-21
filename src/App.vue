@@ -7,7 +7,9 @@ import { SpeedInsights } from '@vercel/speed-insights/vue';
 const store = useMessageStore();
 const { message } = storeToRefs(store);
 const eventPerPage = ref<number>(3);
+const auctionPerPage = ref<number>(5);
 provide('eventPerPage', eventPerPage)
+provide('auctionPerPage', auctionPerPage)
 </script>
 
 <template>
@@ -26,6 +28,7 @@ provide('eventPerPage', eventPerPage)
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'about'}">About</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'add-event'}">New Event</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'add-organizer'}">New Organizer</RouterLink> |
+          <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'auction-list-view', query: {page: 1, perPage: auctionPerPage} }">Auction</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'setting-view', }">
             Setting
           </RouterLink>
