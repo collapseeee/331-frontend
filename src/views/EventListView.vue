@@ -10,7 +10,7 @@ import router from '@/router'
 const events = ref<Event[] | null>(null)
 const totalEvents = ref<number>(0);
 const hasNextPage = computed(() => {
-  const totalPages = Math.ceil(totalEvents.value / 3)
+  const totalPages = Math.ceil(totalEvents.value / 1);
   return page.value < totalPages;
 })
 const props = defineProps({
@@ -27,14 +27,7 @@ const page = computed(() => props.page)
 const perPage = computed(() => props.perPage)
 onMounted(() => {
   watchEffect(() => {
-    EventService.getEvents(3, page.value)
-      .then((response) => {
-        events.value = response.data
-        totalEvents.value = response.headers['x-total-count']
-      })
-      .catch((error) => {
-        console.error('There was an error!', error)
-      })
+    updateKeyword();
   })
 })
 
@@ -42,9 +35,9 @@ const keyword = ref('');
 function updateKeyword() {
   let queryFunction;
   if (keyword.value === '') {
-    queryFunction = EventService.getEvents(3, page.value);
+    queryFunction = EventService.getEvents(1, page.value);
   } else {
-    queryFunction = EventService.getEventsByKeyword(keyword.value, 3, page.value)
+    queryFunction = EventService.getEventsByKeyword(keyword.value, 1, page.value)
   }
   queryFunction.then((response) => {
     events.value = response.data;
