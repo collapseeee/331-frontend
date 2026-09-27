@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<BaseSelectProps>(), {
       <option
         v-for="option in props.options"
         :value="option.id"
-        :key="option.id"
+        :key="option.id!"
         :selected="option.id === modelValue"
       >
         {{ option.name }}

@@ -40,7 +40,7 @@ onMounted(() => {
 <template>
   <h1>Events For Good</h1>
   <div class="flex flex-col items-center">
-    <div v-for="event in events" :key="event.id">
+    <div v-for="event in events" :key="event.id!">
       <EventCard :event="event" />
       <EventAdditionalCard :event="event" />
     </div>
