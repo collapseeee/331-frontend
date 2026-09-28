@@ -72,7 +72,7 @@ export interface Organizer {
   name?: string
   organizationName?: string
   address?: string
-  image: string[]
+  images: string[]
 }
 
 export interface Auction {
