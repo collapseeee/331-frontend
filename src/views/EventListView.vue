@@ -61,7 +61,7 @@ function updateKeyword() {
         @input="updateKeyword"
       />
     </div>
-    <div v-for="event in events" :key="event.id">
+    <div v-for="event in events" :key="event.id!">
       <EventCard :event="event" />
       <EventAdditionalCard :event="event" />
     </div>
