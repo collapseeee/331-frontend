@@ -32,5 +32,5 @@ const onChanged = (files: UploadMedia[]): void => {
 }
 </script>
 <template>
-  <Uploader :server="uploadUrl" :media="media" @changed="onChanged" />
+  <Uploader :server="uploadUrl" :media="media" @change="onChanged" />
 </template>
