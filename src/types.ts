@@ -8,6 +8,7 @@ export interface Event {
   time: string
   petsAllowed: boolean
   organizer: Organizer
+  images: string[]
 }
 
 export interface Student {
@@ -67,8 +68,10 @@ export interface UserState {
 }
 
 export interface Organizer {
-  id: number
-  name: string;
+  id: number | null
+  name?: string
+  organizationName?: string
+  address?: string
 }
 
 export interface Auction {
