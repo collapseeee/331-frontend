@@ -24,10 +24,16 @@ import UserService from '@/services/UserService'
 import AuctionListView from '@/views/AuctionListView.vue'
 import OrganizerDetailView from '@/views/OrganizerDetail.vue'
 import OrganizerListView from '@/views/OrganizerList.vue'
+import LoginView from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/login',
+      name: 'login-view',
+      component: LoginView,
+    },
     {
       path: '/',
       name: 'event-list-view',
