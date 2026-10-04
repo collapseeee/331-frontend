@@ -1,9 +1,23 @@
 <script lang="ts" setup>
 import InputText from '@/components/InputText.vue';
-import { ref } from 'vue';
-
-const email = ref('')
-const password = ref('')
+import * as yup from 'yup';
+import { useField, useForm } from 'vee-validate';
+const validationSchema = yup.object({
+  email: yup.string().required('Email is required').email('Input must be an email.'),
+  password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters')
+});
+const { errors, handleSubmit } = useForm({
+  validationSchema,
+  initialValues: {
+    email: '',
+    password: ''
+  }
+});
+const { value: email } = useField<string>('email');
+const { value: password } = useField<string>('password');
+const onSubmit = handleSubmit((values) => {
+  console.log(values);
+});
 </script>
 <template>
   <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -15,10 +29,10 @@ const password = ref('')
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" @submit.prevent="onSubmit">
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-          <InputText id="email" v-model="email" type="email" placeholder="Email Address" />
+          <InputText :error="errors['email']" id="email" v-model="email" type="email" placeholder="Email Address" />
         </div>
 
         <div>
@@ -28,7 +42,7 @@ const password = ref('')
               <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
             </div>
           </div>
-          <InputText id="password" type="password" v-model="password" placeholder="Password" />
+          <InputText :error="errors['password']" id="password" type="password" v-model="password" placeholder="Password" />
         </div>
 
         <div>
