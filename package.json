@@ -15,6 +15,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/vite": "^4.3.3",
     "@types/nprogress": "^0.2.3",
     "@vercel/analytics": "^2.0.1",
