@@ -17,7 +17,7 @@ provide('eventPerPage', eventPerPage)
 provide('auctionPerPage', auctionPerPage)
 function logout() {
   authStore.logout()
-  router.push({name: 'login'})
+  router.push({name: 'login-view'})
 }
 </script>
 
