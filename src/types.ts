@@ -70,6 +70,7 @@ export interface UserState {
 export interface Organizer {
   id: number | null
   name?: string
+  roles: string[]
   organizationName?: string
   address?: string
   images: string[]

@@ -73,9 +73,11 @@ function logout() {
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'organizer-list-view'}">Organizers</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'student-list-view'}">Students</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'about'}">About</RouterLink> |
-          <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'add-event'}">New Event</RouterLink> |
-          <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'add-organizer'}">New Organizer</RouterLink> |
-          <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'auction-list-view', query: {page: 1, perPage: auctionPerPage} }">Auction</RouterLink> |
+          <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'auction-list-view', query: {page: 1, perPage: auctionPerPage} }">Auction</RouterLink>
+          <span v-if="authStore.isAdmin"> |
+            <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'add-event'}">New Event</RouterLink> |
+            <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'add-organizer'}">New Organizer</RouterLink> |
+          </span>
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'setting-view', }">
             Setting
           </RouterLink>
