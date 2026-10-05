@@ -21,7 +21,7 @@ export const useAuthStore = defineStore('auth', {
       return this.user?.name || ''
     },
     isAdmin(): boolean {
-      return this.user?.roles.includes('ROLE_ADMIN') || false
+      return this.user?.roles?.includes('ROLE_ADMIN') || false
     },
     authorizationHeader(): string {
       return `Bearer ${this.token}`
@@ -37,6 +37,34 @@ export const useAuthStore = defineStore('auth', {
         .then((response) => {
           this.token = response.data.access_token
           this.user = response.data.user
+          localStorage.setItem('access_token', this.token as string)
+          localStorage.setItem('user', JSON.stringify(this.user))
+          return response
+        })
+    },
+    register(user: {
+      username: string
+      password: string
+      firstname: string
+      lastname: string
+      email: string
+    }) {
+      return apiClient
+        .post('/api/v1/auth/register', {
+          username: user.username,
+          password: user.password,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          email: user.email
+        })
+        .then((response) => {
+          this.token = response.data.access_token
+          this.user = response.data.user || {
+            id: null,
+            name: `${user.firstname} ${user.lastname}`.trim() || user.username,
+            roles: ['ROLE_USER'],
+            images: []
+          }
           localStorage.setItem('access_token', this.token as string)
           localStorage.setItem('user', JSON.stringify(this.user))
           return response

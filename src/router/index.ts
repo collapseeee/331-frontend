@@ -25,6 +25,7 @@ import AuctionListView from '@/views/AuctionListView.vue'
 import OrganizerDetailView from '@/views/OrganizerDetail.vue'
 import OrganizerListView from '@/views/OrganizerList.vue'
 import LoginView from '@/views/LoginView.vue'
+import RegisterView from '@/views/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/login',
       name: 'login-view',
       component: LoginView,
+    },
+    {
+      path: '/register',
+      name: 'register-view',
+      component: RegisterView,
     },
     {
       path: '/',
