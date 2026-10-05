@@ -4,6 +4,7 @@ import { provide, ref } from 'vue';
 import { useMessageStore } from '@/stores/message';
 import { storeToRefs } from 'pinia';
 import { SpeedInsights } from '@vercel/speed-insights/vue';
+import SvgIcon from '@jamescoyle/vue-icon'
 const store = useMessageStore();
 const { message } = storeToRefs(store);
 const eventPerPage = ref<number>(3);
@@ -19,9 +20,19 @@ provide('auctionPerPage', auctionPerPage)
       <div id="flashMessage" class="animate-fade" v-if="message && message.split(' ').at(0) !== 'The'">
         <h4>{{ message }}</h4>
       </div>
-      <h1>Deploy with Vercel</h1>
       <div class="wrapper">
-        <nav>
+        <nav class="py-6">
+          <nav class="flex">
+            <ul class="flex navbar-nav ml-auto">
+              <li class="nav-item px-2">
+                <RouterLink to="/register" class="nav-link">
+                  <div class="flex items-center">
+                    <SvgIcon
+                  </div>
+                </RouterLink>
+              </li>
+            </ul>
+          </nav>
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'event-list-view', query: {page: 1, perPage: eventPerPage} }">Event</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'user-list-view', query: {page: 1, perPage: eventPerPage} }">Users</RouterLink> |
           <RouterLink class="font-bold text-gray-700" exact-active-class="text-green-500" :to="{ name: 'organizer-list-view'}">Organizers</RouterLink> |
