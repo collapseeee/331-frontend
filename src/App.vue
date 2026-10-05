@@ -1,16 +1,24 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { provide, ref } from 'vue';
 import { useMessageStore } from '@/stores/message';
 import { storeToRefs } from 'pinia';
 import { SpeedInsights } from '@vercel/speed-insights/vue';
 import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiAccount, mdiAccountPlus, mdiLogin, mdiLogout } from '@mdi/js'
+import { useAuthStore } from './stores/auth';
 const store = useMessageStore();
+const authStore = useAuthStore();
+const router = useRouter();
 const { message } = storeToRefs(store);
 const eventPerPage = ref<number>(3);
 const auctionPerPage = ref<number>(5);
 provide('eventPerPage', eventPerPage)
 provide('auctionPerPage', auctionPerPage)
+function logout() {
+  authStore.logout()
+  router.push({name: 'login'})
+}
 </script>
 
 <template>
@@ -23,13 +31,40 @@ provide('auctionPerPage', auctionPerPage)
       <div class="wrapper">
         <nav class="py-6">
           <nav class="flex">
-            <ul class="flex navbar-nav ml-auto">
+            <ul v-if="!authStore.currentUserName" class="flex navbar-nav ml-auto">
               <li class="nav-item px-2">
                 <RouterLink to="/register" class="nav-link">
                   <div class="flex items-center">
-                    <SvgIcon
+                    <SvgIcon type="mdi" :path="mdiAccountPlus"/>
+                    <span class="ml-3">Sign Up</span>
                   </div>
                 </RouterLink>
+              </li>
+              <li class="nav-item px-2">
+                <RouterLink to="/login" class="nav-link">
+                  <div class="flex items-center">
+                    <SvgIcon type="mdi" :path="mdiLogin"/>
+                    <span class="ml-3">Login</span>
+                  </div>
+                </RouterLink>
+              </li>
+            </ul>
+            <ul v-if="authStore.currentUserName" class="flex navbar-nav ml-auto">
+              <li class="nav-item px-2">
+                <RouterLink to="/profile" class="nav-link">
+                  <div class="flex items-center">
+                    <SvgIcon type="mdi" :path="mdiAccount"/>
+                    <span class="ml-3">{{ authStore.currentUserName }}</span>
+                  </div>
+                </RouterLink>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link hover:cursor-pointer" @click="logout">
+                  <div class="flex items-center">
+                    <SvgIcon type="mdi" :path="mdiLogout"/>
+                    <span class="ml-3">Logout</span>
+                  </div>
+                </a>
               </li>
             </ul>
           </nav>
