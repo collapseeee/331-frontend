@@ -1,11 +1,5 @@
 # SE331 Component-Based Software Development
-## Lab 05: CSS Frameworks & Comprehensive Frontend Learning Journey (Labs 01–05)
-
-**Student Name:** Krittameth Tansuwan  
-**Student ID:** 672115002  
-**Repository:** [331-Lab05-CSS-Library](https://github.com/collapseeee/331-Lab05-CSS-Library)
-
----
+## Frontend part (Vue3 and Pinia)
 
 ## 📖 Overview
 
